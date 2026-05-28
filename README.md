@@ -4,7 +4,7 @@
 
 Este é um projeto de um SaaS em desenvolvimento, criado com o objetivo de consolidar e aprofundar os meus conhecimentos em **Node.js** e no ecossistema de desenvolvimento backend moderno.
 
-## 📌 Objetivo do Projeto
+## Objetivo do Projeto
 
 O principal objetivo deste projeto é funcionar como uma plataforma SaaS (Software as a Service) focada em developers, enquanto serve simultaneamente como um laboratório prático para:
 
@@ -15,8 +15,8 @@ O principal objetivo deste projeto é funcionar como uma plataforma SaaS (Softwa
 - Aplicar conceitos de bases de dados e performance
 - Experimentar integração com serviços externos
 
-- ## 🧱 Estado do Projeto
+- ## Estado do Projeto
 
-⚠️ **Em desenvolvimento ativo**
+**Em desenvolvimento ativo**
 
 Este projeto ainda está em construção e pode sofrer alterações frequentes na arquitetura, estrutura de pastas e funcionalidades.
