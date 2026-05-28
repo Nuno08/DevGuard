@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id          Int      @id @default(autoincrement())
+
+  username    String   @db.VarChar(70)
+
+  email       String?  @unique @db.VarChar(155)
+  password    String?  @db.VarChar(155)
+
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  provider    String?  @default("local") @db.VarChar(20)
+  providerId  String?  @map("provider_id") @db.VarChar(255)
+
+  @@index([email])
+  @@map("users")
+}
+
+model refreshToken {
+  id          Int      @id @default(autoincrement())
+  tokenHash   String   @db.VarChar(255)
+  userId      Int
+
+  created_at  DateTime @default(now())
+  expires_at  DateTime
+  revoked     Boolean  @default(false)
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}

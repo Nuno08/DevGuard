@@ -1,0 +1,226 @@
+            *{
+                box-sizing: border-box;
+            }
+            body {
+                font-family: 'Manrope', sans-serif;
+                background: linear-gradient(135deg, #bddbf6, #e8c3e8);
+                min-height: 100vh;
+            }
+            .login-card {
+                position: relative;
+                background-color: #eaeff8;
+                border-radius: 40px;
+                max-width: 1000px;
+                width: 80%;
+                overflow: hidden;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                padding: 3rem 3rem;
+                margin: 100px auto;
+                margin-top: 3%;
+            }
+
+            main div h1{
+                flex-grow: 1;
+                font-family: 'Poppins', sans-serif;
+                align-self: flex-start;
+                color: #d076aa;
+            }
+            main div span{
+                align-self: center;
+                color: green;
+                font-size: 20px;
+            }
+            .top{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+            .dashboard {
+                display: flex;
+                flex-wrap: wrap;
+                gap:20px;
+            }
+            .middle{
+                flex: 1;
+            }
+            main div div div h2{
+                font-family: 'Manrope', sans-serif;
+                font-weight:400;
+                margin-bottom: 15px;
+            }
+            main div div div span{
+                flex: 2;
+                font-size: 20px;
+                margin-left: 10px;
+                color: #000;
+            }
+            main div div div a{
+                margin-left: 100px;
+                border-radius: 6px;
+                text-decoration: none;
+                background-color: #EEF7FE;
+                color: #000;
+                padding: 5px 6px 5px 6px;
+                box-shadow: 0.5px 1px 2px 2px rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+            }
+            main div div div h6{
+                margin-top: 10px;
+                margin-left: 10px;
+                width: 370px;
+                padding: 1rem;
+                border-bottom: 1.5px solid #DCE4EB;
+            }
+            .btn-right-side{
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                max-width: 400px;
+                width: 100%;
+                background-color: #EEF7FE;
+                color: #000;
+                border-radius: 12px;
+                padding: 0.75rem 2rem;
+                border: 1px solid #d076aa;
+                font-weight: 600;
+                box-shadow: 0.5px 1px 2px 2px rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+                margin-top: 10px;
+            }
+            .btn-right-side:hover{
+                background-color:#ffffff;
+                color: #d076aa;
+                transition: 0.3s ease;
+                box-shadow: 0.5px 1.5px 2.5px 2.5px rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+            }
+            .btn-right-side:last-of-type:hover{
+                background-color: red;
+                color: #fff;
+            }
+
+            .activity{
+                margin-top: 60px;
+            }
+
+            main div div div div{
+                display: flex;
+                flex-direction: column;
+                background-color: #dde4f7;
+                border-radius: 15px;
+                margin-top: 60px;
+                padding: 0.5rem;
+                box-shadow: 0.5px 1.5px 2.5px 2.5px rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+            }
+
+            main div div div div h2{
+                margin-left: 25px;
+                font-size: 27px;
+            }
+            main div div div div h6{
+                display: flex;
+                flex: 1;
+                background-color: #EEF7FE;
+                border-bottom: 2px solid #DCE4EB;
+                border-radius: 1px 1px 10px 10px;
+                margin: 0px 5px 0px 5px;
+                box-shadow: 1px 1px 2px 0.5px rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(10px);
+            }
+            .top-summary{
+                background-color: #EEF7FE;
+                border-bottom: 1px solid #DCE4EB;
+                border-radius: 10px 10px 1px 1px;
+                margin-bottom: 0px;
+                margin-top: 0px;
+            }
+            main div div div div span{
+                flex: 1;
+                font-size: 16px;
+                text-align: right;
+            }
+            
+            main nav {
+                background: linear-gradient(135deg, #bddbf6, #e8c3e8);
+                border-bottom: #FFFFFF solid;
+                width: 100%;
+                max-height: 50px;
+                height: 100%;
+                padding: 10px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+
+            main nav button {
+                height: 40px;
+                width: 40px;
+                border-radius: 100%;
+                margin-right: 20px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                justify-content: center;
+            }
+
+            main nav img {
+                background-color: #FFFFFF;
+                max-height: 40px;
+                max-width: 40px;
+                border-radius: 100%;
+            }
+
+            .menu {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px;
+
+                background-color: rgba(255, 255, 255, 0.65);
+                max-width: 190px;
+                width: 100%;
+                max-height: 200px;
+                border-radius: 12px;
+
+                top: 53px;
+                right: 40px;
+
+                
+                box-shadow: 0.2px 7px 20px 2px rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition: 0.2s ease;
+            }
+            .menu.active {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+            .menu a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                justify-content: space-around;
+                text-decoration: none;
+                border: 1px #ffffff solid;
+                color: #000;
+                background-color: aliceblue;
+                padding: 3px;
+                box-shadow: 0.2px 1px 2px 2px rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+            }
+            .menu a:hover {
+                box-shadow: 0.2px 1.5px 2.5px 2.5px rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+                color: #d076aa;
+            }
