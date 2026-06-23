@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id          Int      @id @default(autoincrement())
+
+  username    String   @db.VarChar(70)
+
+  email       String?  @unique @db.VarChar(155)
+  password    String?  @db.VarChar(155)
+
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([email])
+  @@map("users")
+}
+
+model Session {
+id Int @id @default(autoincrement())
+userId Int @map("user_id")
+deviceName String? @map("device_name") @db.VarChar(100)
+browser String? @db.VarChar(100)
+os String? @db.VarChar(100)
+ipAddress String? @map("ip_address") @db.VarChar(45)
+country String? @db.VarChar(100)
+userAgent String? @map("user_agent") @db.Text
+createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+lastActiveAt DateTime? @map("last_active_at") @db.Timestamp(0)
+expiresAt DateTime @map("expires_at")
+revoked Boolean? @default(false)
+revokedAt DateTime? @map("revoked_at")
+
+@@index([userId], map: "fk_sessions_user")
+@@map("sessions")
+}
+
+model RefreshToken {
+id Int @id @default(autoincrement())
+tokenHash String @db.VarChar(255)
+userId Int @map("user_id")
+sessionId Int @map("session_id")
+createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+expiresAt DateTime @map("expires_at")
+revoked Boolean @default(false)
+replacedByTokenId Int? @map("replaced_by_token_id")
+revokedAt DateTime? @map("revoked_at")
+
+@@index([userId], map: "idx_userId")
+@@index([sessionId], map: "idx_session_id")
+@@map("refresh_tokens")
+}
+
+model OAuthAccount {
+id Int @id @default(autoincrement())
+userId Int @map("user_id")
+provider String @db.VarChar(50)
+providerId String @map("provider_id") @db.VarChar(200)
+email String? @db.VarChar(155)
+createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+
+@@unique([provider, providerId], map: "unique_provider_account")
+@@index([userId], map: "idx_user_id")
+@@map("oauth_accounts")
+}
+
+model ActivityLog {
+id Int @id @default(autoincrement())
+userId Int @map("user_id")
+sessionId Int? @map("session_id")
+type String @db.VarChar(50)
+severity Severity? @default(info)
+ipAddress String? @map("ip_address") @db.VarChar(45)
+userAgent String? @map("user_agent") @db.Text
+metadata Json?
+createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+
+@@index([userId], map: "idx_user_id")
+@@index([sessionId], map: "idx_session_id")
+@@index([type], map: "idx_type")
+@@map("activity_logs")
+}

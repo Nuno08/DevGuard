@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+    
+    <head>
+        <title>Login Page</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel="apple-touch-icon" sizes="180x180" href="LoginFavicon_io/apple-touch-icon.png ">
+        <link rel="icon" type="image/png" sizes="32x32" href="LoginFavicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="LoginFavicon_io/favicon-16x16.png">
+        <link rel="manifest" href="LoginFavicon_io/site.webmanifest">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script type="module" src="./scripts/togglePassword.js"></script>
+        <script type="module" src="./scripts/redirect.js"></script>
+        <link rel="stylesheet" href="css/Login.css">
+    </head>
+
+    <body>
+        <main class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+                    <div class="login-card">
+                        <div class="login-form">
+                            <h2>My Login Page</h2>
+                            <h1 class="fw-bold mb-4">Login</h1>
+                            <form id="loginForm" class="login-form" action="http://localhost:8088/auth/login" method="POST">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="login@gmail.com" required>
+                                </div>
+                               <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <label for="password" class="form-label">Password</label>
+                                        <a href="#" title="em breve" class="forgot-password">Forgot Password?</a>
+                                    </div>
+                                    <div class="input-wrapper position-relative">
+                                        <input type="password" class="form-control pe-5" id="password" name="password" placeholder="********" required>
+                                        <i class="bi bi-eye-slash" id="togglePassword"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="Button">LOGIN <img src="Icons/design_swap-left-outlined.png" alt="arrow-left"></button>
+                                </div>
+                            </form>
+                            <div class="signup-text">
+                                <p>or continue with</p>
+                            </div>
+                            <div class="social-login">
+                                <button><a href="http://localhost:8088/auth/facebook"><img src="Icons/Facebook.png" alt="Facebook-Icon"></a></button>
+                                <button><a href="http://localhost:8088/auth/github" title="em breve"><img src="Icons/Github.png" alt="Github-Icon"></a></button>
+                                <button><a href="http://localhost:8088/auth/google" title="em breve"><img src="Icons/Google.png" alt="Google-Icon"></a></button>
+                            </div>
+                            <p class="signup-text">
+                            Don't have an account yet? <a href="registo.html">Sign up for free</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
