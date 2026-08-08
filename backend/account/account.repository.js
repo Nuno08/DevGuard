@@ -59,6 +59,15 @@ const unlinkProvider = async (user_id, provider) => {
     );
 };
 
+const hasPassword = async (id) => {
+    const [rows] = await db.query(
+        "SELECT password IS NOT NULL AS hasPassword FROM users WHERE id = ?",
+        [id]
+    );
+
+    return Boolean(rows[0]?.hasPassword);
+};
+
 module.exports = {
     getSecurityEvents,
     findByIdWithPassword,
@@ -66,5 +75,6 @@ module.exports = {
     revokeAllRefreshTokens,
     getProvider,
     userHasPassword,
-    unlinkProvider
+    unlinkProvider,
+    hasPassword
 }

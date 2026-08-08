@@ -101,14 +101,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const user = await res.json();
 
-        if (welcomeEl) {
-            welcomeEl.textContent = `Welcome ${user.username || user.email}`;
-        }
-
-        if (avatar) {
-            avatar.src =
-                `https://ui-avatars.com/api/?name=${encodeURIComponent(user.username)}&background=fff&color=000`;
-        }
 
     } catch (err) {
         console.error("Auth error:", err);
@@ -116,3 +108,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = LOGIN_URL;
     }
 });
+
+const CHANGE_PASSWORD = "http://127.0.0.1:5500/frontend/Login/change-password.html";
+document.getElementById('changePassword').addEventListener('click', function(){
+    window.location.href = CHANGE_PASSWORD;
+})

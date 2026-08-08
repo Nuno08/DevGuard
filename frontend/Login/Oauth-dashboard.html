@@ -23,17 +23,16 @@
         <link rel="manifest" href="LoginFavicon_io/site.webmanifest">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="css/Home.css">
+        <link rel="stylesheet" href="css/oauthDashboard.css">
         <script type="module" src="./scripts/username.js"></script>
-        <script type="module" src="./scripts/manageOauth.js"></script>
+        <script type="module" src="./scripts/btnDashboard.js"></script>
+        <script type="module" src="./scripts/passwordDefined.js"></script>
+        <script type="module" src="./scripts/definePassword.js"></script>
         <script type="module" src="./scripts/securityStatus.js"></script>
         <script type="module" src="./scripts/recentActivity.js"></script>
-        <script type="module" src="./scripts/sessions.js"></script>
         <script type="module" src="./scripts/accountSummary.js"></script>
         <script type="module" src="./scripts/logout.js" defer></script>
         <script type="module" src="./scripts/modal_user.js"></script>
-        <script type="module" src="./scripts/logoutAll.js"></script>
-        <script type="module" src="./scripts/changePassword.js"></script>
     </head>
 
     <body>
@@ -43,33 +42,23 @@
             </nav>
             <div class="login-card">
                 <div class="top">
-                    <h1 id="welcome"></h1>
+                    <h1>Oauth Dashboard</h1>
                     <span id="securityStatus"></span>
                 </div>
                 
                 <div class="dashboard">
                     <div class="middle">
                         <h2>Monitorization</h2>
-                        <span style="font-size: 20px;" id="activeSessions"></span>
-                        <a href="#">Manage</a>
-                        <h6 id="currentSession"></h6>
-                        <h6 id="otherSession"></h6>
-                        <h2 class="activity">Recent activity</h2>
-                        <h6 id="activity1"></h6>
-                        <h6 id="activity2"></h6>
-                        <h6 id="activity3"></h6>
+                        <span>Password Defined</span>
+                        <h6 id="passwordDefined"></h6>
+                        
                     </div>
                     <div>
                         <h2>Quick Actions & Summary</h2>
                         <span>Quick Actions</span>
-                        <button class="btn-right-side" id="changePassword">Change password</button>
-                        <button class="btn-right-side" id="manageOauth">Manage Oauth</button>
-                        <button class="btn-right-side" id="logoutAllBtn">Terminate All Sessions</button>
-                        <div>
-                            <h2>Account Summary</h2>
-                            <h6 class="top-summary">Email: <span id="email"></span></h6>
-                            <h6 id="providerH6">Auth Provider: <span id="provider"></span></h6>
-                        </div>
+                        <button class="btn-right-side" id="definePassword">Define Password</button>
+                        <button class="btn-right-side" id="dashboard">Go back to dashboard</button>
+                        
                     </div>
                 </div>
             </div>

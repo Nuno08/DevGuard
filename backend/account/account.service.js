@@ -5,6 +5,7 @@ const { logActivity } = require('../activity/activity.service');
 const sessionRepository = require('../session/session.repository');
 const { generateToken, validateToken, extractTokenFromHeader, generateRefreshToken, validateRefreshToken } = require('../utils/jwt');
 const { calculateAccountSecurityScore } = require('../utils/helper');
+const { validatePassword } = require('../utils/helper');
 
 
 const getSecurityLevel = (score) => {
@@ -63,12 +64,17 @@ const changePassword = async (user_id, session_id, data, requestMeta) => {
     logger.info('Change Password');
     const { currentPassword, newPassword } = data;
 
-    if(!currentPassword || !newPassword){
+    if(!newPassword){
         throw new Error('Missing required fields');
     }
 
-    if (newPassword.length < 6) {
-        throw new Error('Password neddes at least 6 characters');
+    const validationErrors = validatePassword(newPassword);
+
+    if (validationErrors.length > 0) {
+        const error = new Error("Password validation failed");
+        error.errors = validationErrors;
+
+        throw error;
     }
 
     const user = await repository.findByIdWithPassword(user_id);
@@ -77,29 +83,37 @@ const changePassword = async (user_id, session_id, data, requestMeta) => {
         throw new Error('User not found');
     }
 
-    // 2. Validate current password
-    const isValid = await bcrypt.compare(
-        currentPassword,
-        user.password
-    );
+    const hasPassword = !!user.password;
 
-    if(!isValid){
-        await logActivity({
-            user_id,
-            session_id,
-            type: 'PASSWORD_CHANGE_FAILED',
-            severity: 'warning',
-            metadata: {
-                    reason: 'INVALID_CURRENT_PASSWORD'
-            }
-        },
-        {
-            ip: requestMeta?.ip,
-            userAgent: requestMeta?.userAgent
+    if (hasPassword) {
+        if (!currentPassword) {
+            throw new Error("Current password is required");
         }
+
+        // 2. Validate current password
+        const isValid = await bcrypt.compare(
+            currentPassword,
+            user.password
         );
 
-        throw new Error('Invalid current password');
+        if(!isValid){
+            await logActivity({
+                user_id,
+                session_id,
+                type: 'PASSWORD_CHANGE_FAILED',
+                severity: 'warning',
+                metadata: {
+                        reason: 'INVALID_CURRENT_PASSWORD'
+                }
+            },
+            {
+                ip: requestMeta?.ip,
+                userAgent: requestMeta?.userAgent
+            }
+            );
+
+            throw new Error('Invalid current password');
+        }
     }
 
     // 3. Hash new password
@@ -187,9 +201,63 @@ const unlinkProvider = async (user_id, session_id, provider, requestMeta) => {
     };
 };
 
+const passwordEmpty = async (user_id) => {
+    logger.info('Get Password defined');
+    return await repository.hasPassword(user_id);
+}
+
+const setPassword = async (user_id, session_id, data, requestMeta) => {
+    logger.info('Set Password');
+    const { password, confirmPassword } = data;
+
+    if(!password || !confirmPassword){
+        throw new Error('Password field cant be empty');
+    }
+
+    if( password !== confirmPassword){
+        throw new Error('Passwords do not match');
+    }
+
+    const validationErrors = validatePassword(password);
+
+    if (validationErrors.length > 0) {
+        const error = new Error("Password validation failed");
+        error.errors = validationErrors;
+
+        throw error;
+    }
+
+    
+    const hasPassword = await repository.hasPassword(user_id);
+
+    if(hasPassword){
+        throw new Error('User already has password');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await repository.updatePassword(user_id, hashedPassword);
+
+    await logActivity({
+        user_id,
+        session_id,
+        type: 'PASSWORD_SET',
+        severity: 'info'
+    },
+    {
+        ip: requestMeta?.ip,
+        userAgent: requestMeta?.userAgent
+    }
+    );
+    
+    return { message: 'Password set successfully' };
+}
+
 module.exports = {
     getSecurity,
     changePassword,
     getProvider,
-    unlinkProvider
+    unlinkProvider,
+    passwordEmpty,
+    setPassword
 }

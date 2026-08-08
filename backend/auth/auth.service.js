@@ -256,7 +256,9 @@ const refresh = async (refreshToken, requestMeta) => {
     // 7. gerar novos tokens
     const newAccessToken = generateToken({
         id: decoded.id
-    });
+    },
+        storedToken.session_id
+    );
 
     const newRefreshToken = generateRefreshToken({
         id: decoded.id
